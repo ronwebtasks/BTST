@@ -306,6 +306,12 @@ if st.button("🚀 Run Live BTST Scan"):
                 # Estimated option premium (1.8% of spot as a safe proxy benchmark)
                 est_premium = round(current_close * 0.018, 2)
                 capital_needed = round(est_premium * meta["lot_size"], 2)
+
+                # Premium & Stop Loss Sizer Math
+                est_premium = round(current_close * 0.016, 2)
+                capital_needed = round(est_premium * meta["lot_size"], 2)
+                strict_premium_sl = round(est_premium * 0.75, 2) # Strict 25% Stop-loss on option price
+                
                 
                 results.append({
                     "Stock": name,
