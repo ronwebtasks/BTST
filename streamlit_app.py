@@ -307,10 +307,11 @@ if st.button("🚀 Run Live BTST Scan"):
                 est_premium = round(current_close * 0.018, 2)
                 capital_needed = round(est_premium * meta["lot_size"], 2)
 
-                # Premium & Stop Loss Sizer Math
-                est_premium = round(current_close * 0.016, 2)
-                capital_needed = round(est_premium * meta["lot_size"], 2)
-                strict_premium_sl = round(est_premium * 0.75, 2) # Strict 25% Stop-loss on option price
+                # Premium Stop-Loss & Target Sizer Math
+                strict_premium_sl = round(est_premium * 0.75, 2)
+                premium_target = round(est_premium * 1.35, 2)
+                max_rupee_loss = round((est_premium - strict_premium_sl) * meta["lot_size"], 2)
+
                 
                 
                 results.append({
@@ -319,6 +320,9 @@ if st.button("🚀 Run Live BTST Scan"):
                     "Lot Size": meta["lot_size"],
                     "Recommended OTM": f"{otm_strike} CE",
                     "Est. Premium (₹)": est_premium,
+                    "Strict Option SL (₹)": strict_premium_sl,
+                    "Target Exit Price (₹)": premium_target,
+                    "Max Risk / Lot (₹)": f"₹{max_rupee_loss:,}",
                     "Margin Required": f"₹{capital_needed:,}",
                     "Vol vs Avg": f"{round(current_volume / avg_volume, 1)}x",
                     "RSI": round(rsi, 1),
