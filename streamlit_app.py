@@ -340,3 +340,63 @@ if st.button("🚀 Run Live BTST Scan"):
     if results:
         st.markdown("### 🏁 BTST Risk Protocol")
         st.info("💡 **Entry Window:** 3:15 PM - 3:25 PM IST. **Exit Window:** Tomorrow 9:15 AM - 9:30 AM IST.")
+
+# --- ADD THIS TO THE VERY BOTTOM OF YOUR STREAMLIT_APP.PY ---
+
+st.markdown("---")
+st.header("🎯 Precise Live Option Premium Lookup")
+st.markdown("Use this tool to pull the **exact live market premium and margin** for a specific stock before entering your order.")
+
+# User inputs the symbol manually to get instantaneous live data
+lookup_stock = st.selectbox("Select Stock for Live Option Chain", list(FANDO_OPTIONS.keys()))
+
+if st.button("🔍 Fetch Live Contract Data"):
+    meta = FANDO_OPTIONS[lookup_stock]
+    try:
+        ticker_obj = yf.Ticker(meta["symbol"])
+        
+        # Get live spot price
+        live_spot = ticker_obj.history(period="1d")["Close"].iloc[-1]
+        
+        # Calculate strict OTM+1 strike
+        atm_strike = round(live_spot / meta["strike_step"]) * meta["strike_step"]
+        otm_1_strike = int(atm_strike + meta["strike_step"]) if live_spot >= atm_strike else int(atm_strike)
+        if otm_1_strike <= live_spot: 
+            otm_1_strike += int(meta["strike_step"])
+            
+        # Get the expiration dates available
+        expirations = ticker_obj.options
+        
+        if expirations:
+            # Use the nearest/current month expiry contract
+            nearest_expiry = expirations[0]
+            opt_chain = ticker_obj.option_chain(nearest_expiry)
+            calls_df = opt_chain.calls
+            
+            # Find the exact row for our OTM+1 strike
+            matching_strike = calls_df[calls_df['strike'] == otm_1_strike]
+            
+            if not matching_strike.empty:
+                real_premium = matching_strike['lastPrice'].iloc[0]
+                real_capital = round(real_premium * meta["lot_size"], 2)
+                real_sl = round(real_premium * 0.75, 2)
+                real_target = round(real_premium * 1.35, 2)
+                
+                # Display high-accuracy cards
+                col1, col2, col3 = st.columns(3)
+                col1.metric(label=f"Live Spot Price ({lookup_stock})", value=f"₹{round(live_spot, 2)}")
+                col2.metric(label=f"Exact {otm_1_strike} CE Premium", value=f"₹{real_premium}")
+                col3.metric(label="Actual Capital Required / Lot", value=f"₹{real_capital:,}")
+                
+                # Risk parameters
+                col4, col5 = st.columns(2)
+                col4.metric(label="System Stop-Loss (Exit if hits)", value=f"₹{real_sl}")
+                col5.metric(label="Target Take-Profit Target", value=f"₹{real_target}")
+            else:
+                st.error(f"Strike price ₹{otm_1_strike} CE is currently missing or illiquid in the yfinance options feed.")
+        else:
+            st.error("No active option contract expiration dates found for this stock symbol.")
+            
+    except Exception as e:
+        st.error(f"Could not connect to live option feeds: {str(e)}")
+
