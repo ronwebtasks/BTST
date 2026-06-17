@@ -99,7 +99,7 @@ if st.button("🚀 Scan Live Market Data"):
             elif val == "WATCH": return 'background-color: #f1c40f; color: black;'
             return 'background-color: #e74c3c; color: white;'
             
-        st.dataframe(res_df.style.applymap(style_signal, subset=['Signal']), use_container_width=True)
+        st.dataframe(res_df.style.map(style_signal, subset=['Signal']), use_container_width=True)
         
         # Dynamic advice section
         strong_buys = res_df[res_df['Signal'] == "STRONG BUY"]['Stock'].tolist()
