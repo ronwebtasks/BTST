@@ -168,6 +168,38 @@ FANDO_OPTIONS = {
 "RBLBANK": {"symbol": "RBLBANK.NS", "lot_size": 2500, "strike_step": 5},
 "RECL": {"symbol": "RECL.NS", "lot_size": 2000, "strike_step": 2.5},
 "RELIANCE": {"symbol": "RELIANCE.NS", "lot_size": 250, "strike_step": 20},
+    
+
+"SAIL": {"symbol": "SAIL.NS", "lot_size": 4000, "strike_step": 2.5},
+"SBICARD": {"symbol": "SBICARD.NS", "lot_size": 800, "strike_step": 10},
+"SBILIFE": {"symbol": "SBILIFE.NS", "lot_size": 375, "strike_step": 10},
+"SBIN": {"symbol": "SBIN.NS", "lot_size": 1500, "strike_step": 5},
+"SHREECEM": {"symbol": "SHREECEM.NS", "lot_size": 25, "strike_step": 100},
+"SHRIRAMFIN": {"symbol": "SHRIRAMFIN.NS", "lot_size": 300, "strike_step": 20},
+"SIEMENS": {"symbol": "SIEMENS.NS", "lot_size": 150, "strike_step": 50},
+"SRF": {"symbol": "SRF.NS", "lot_size": 375, "strike_step": 20},
+"SUNPHARMA": {"symbol": "SUNPHARMA.NS", "lot_size": 350, "strike_step": 10},
+"SUNTV": {"symbol": "SUNTV.NS", "lot_size": 1500, "strike_step": 10},
+"SYNGENE": {"symbol": "SYNGENE.NS", "lot_size": 1000, "strike_step": 10},
+"TATACOMM": {"symbol": "TATACOMM.NS", "lot_size": 500, "strike_step": 20},
+"TATACONSUM": {"symbol": "TATACONSUM.NS", "lot_size": 650, "strike_step": 10},
+"TATAMOTORS": {"symbol": "TATAMOTORS.NS", "lot_size": 1425, "strike_step": 5},
+"TATAPOWER": {"symbol": "TATAPOWER.NS", "lot_size": 1350, "strike_step": 2.5},
+"TATASTEEL": {"symbol": "TATASTEEL.NS", "lot_size": 5500, "strike_step": 1},
+"TCS": {"symbol": "TCS.NS", "lot_size": 175, "strike_step": 20},
+"TECHM": {"symbol": "TECHM.NS", "lot_size": 600, "strike_step": 10},
+"TITAN": {"symbol": "TITAN.NS", "lot_size": 175, "strike_step": 20},
+"TORNTPHARM": {"symbol": "TORNTPHARM.NS", "lot_size": 500, "strike_step": 20},
+"TRENT": {"symbol": "TRENT.NS", "lot_size": 150, "strike_step": 50},
+"TVSMOTOR": {"symbol": "TVSMOTOR.NS", "lot_size": 350, "strike_step": 20},
+"UBL": {"symbol": "UBL.NS", "lot_size": 400, "strike_step": 20},
+"ULTRACEMCO": {"symbol": "ULTRACEMCO.NS", "lot_size": 100, "strike_step": 100},
+"UPL": {"symbol": "UPL.NS", "lot_size": 1300, "strike_step": 5},
+"VEDL": {"symbol": "VEDL.NS", "lot_size": 2300, "strike_step": 5},
+"VOLTAS": {"symbol": "VOLTAS.NS", "lot_size": 600, "strike_step": 10},
+"WIPRO": {"symbol": "WIPRO.NS", "lot_size": 1500, "strike_step": 2.5},
+"ZEEL": {"symbol": "ZEEL.NS", "lot_size": 3000, "strike_step": 2.5},
+"ZYDUSLIFE": {"symbol": "ZYDUSLIFE.NS", "lot_size": 900, "strike_step": 10}
 }
 
 # Sidebar Mode Selection
